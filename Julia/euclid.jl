@@ -1,5 +1,4 @@
-#!/home/mike/julia-1.6.2/bin/julia
-
+#!/Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia
 # Use Euclid's formula for generating Pythag. Triples
 
 using Printf
