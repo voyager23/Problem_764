@@ -1,4 +1,4 @@
-#!/Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia
+#!/home/mike/julia-1.6.2/bin/julia
 
 #=
 	Limits: x,y,z <= limit
@@ -24,25 +24,49 @@ while (((rmax^2/2)+rmax+1) < N)
 	global rmax += 2
 end
 
-for r in 2:2:rmax
-	# @printf("%d\n",r)
-	r2 = (r*r)/2
+@printf("N:%d	rmax:%d\n",N,rmax);
+solutions = 0
+for r in 2:2:rmax	
+	r2 = (r*r)/2		 
 	# find s and t which are factors of r^2 / 2
-	# x = r+s   y = r+t   z = r+s+t
+	# xx = r+s   yy = r+t   zz = r+s+t
 	
 	limit = Int(floor(sqrt(r2)))
+		#@printf("using r:%d  r2:%d  lim:%d\n", r, r2, limit)
 	s = 1
 	while(s <= limit)
 		if((r2 % s)==0)
 			t = r2/s
-			x = r+s
-			y = r+t
-			z = r+s+t
-			if(((perfect_square(x))&&((y % 4)==0))||((perfect_square(y))&&((x % 4)==0)))
-				@printf("%d %d %d\n", x, y, z)
+			xx = r+s
+			yy = r+t
+			zz = r+s+t
+			if(perfect_square(yy))
+				if((xx%4)==0)
+					x = Int(xx/4)
+					y = Int(floor(sqrt(yy)))
+					z = Int(zz)
+					if(gcd(x,y,z)==1)
+						@printf("x:%d  y:%d  z:%d\n", (xx/4), sqrt(yy), zz)
+						global solutions += 1
+					end
+				end
+			elseif(perfect_square(xx))
+				if((yy%4)==0)
+					x = Int(floor(sqrt(xx)))
+					y = Int(yy/4)
+					z = Int(zz)
+					if(gcd(x,y,z)==1)
+						@printf("x:%d  y:%d  z:%d\n", (yy/4), sqrt(xx), zz)
+						global solutions += 1
+					end
+				end
+			else
+				global solutions += 0
 			end
-		end
+		end #if...
 		s += 1
-	end
+	end #while...
 end
+@printf("Found %d solutions\n", solutions)
+
 
