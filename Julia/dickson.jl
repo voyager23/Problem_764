@@ -18,7 +18,7 @@ function perfect_square(n)
 end
 
 # -----Main Code-----
-const N = 10000
+const N = 1000
 rmax = 2
 while (((rmax^2/2)+rmax+1) < N)
 	global rmax += 2
@@ -26,7 +26,7 @@ end
 
 @printf("N:%d	rmax:%d\n",N,rmax);
 solutions = 0
-for r in 2:2:rmax	
+for r in 2:2:(rmax*2)	
 	r2 = (r*r)/2		 
 	# find s and t which are factors of r^2 / 2
 	# xx = r+s   yy = r+t   zz = r+s+t
@@ -45,7 +45,7 @@ for r in 2:2:rmax
 					x = Int(xx/4)
 					y = Int(floor(sqrt(yy)))
 					z = Int(zz)
-					if(gcd(x,y,z)==1)
+					if((x+y+z)<=N)&&(gcd(x,y,z)==1)
 						@printf("x:%d  y:%d  z:%d\n", (xx/4), sqrt(yy), zz)
 						global solutions += 1
 					end
@@ -55,7 +55,7 @@ for r in 2:2:rmax
 					x = Int(floor(sqrt(xx)))
 					y = Int(yy/4)
 					z = Int(zz)
-					if(gcd(x,y,z)==1)
+					if((x+y+z)<=N)&&(gcd(x,y,z)==1)
 						@printf("x:%d  y:%d  z:%d\n", (yy/4), sqrt(xx), zz)
 						global solutions += 1
 					end
