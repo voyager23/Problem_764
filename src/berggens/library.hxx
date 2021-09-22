@@ -21,8 +21,12 @@
  * 
  */
 
+#ifndef __LIBRARY_HXX__
+#define __LIBRARY_HXX__
 
 #include <iostream>
+#include <cmath>
 
-void function(void);
+bool is_square(uint64_t n);
 
+#endif

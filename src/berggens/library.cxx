@@ -22,11 +22,12 @@
  */
 
 
+
+
 #include "library.hxx"
 
-void function(void)
+bool is_square(uint64_t n)
 {
+	uint64_t m = std::floor(std::sqrt(n));
+	return (n == (m*m));
 }
-
-
-

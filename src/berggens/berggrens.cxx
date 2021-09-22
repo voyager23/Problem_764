@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 	current.push_back(base);
 	// loop start
 	int loop_count = 0;
-	while(loop_count < 4) {
+	while(loop_count < 6) {
 		tforms.clear();
 		for(auto t = current.begin(); t != current.end(); t++){
 			a = std::get<0>(*t);
@@ -49,13 +49,19 @@ int main(int argc, char **argv)
 		// overwrite current with tforms
 		// debug print of current and tforms vectors
 		printf("Loop count: %d\n",loop_count);
+#if(0)
 		printf("Current vector.\n");
 		for(auto p = current.begin(); p != current.end(); ++p)
 			printf("{%ld,%ld,%ld}\n", std::get<0>(*p), std::get<1>(*p), std::get<2>(*p));
-			
-		printf("Tforms vector.\n");
-		for(auto p = tforms.begin(); p != tforms.end(); ++p)
-			printf("{%ld,%ld,%ld}\n", std::get<0>(*p), std::get<1>(*p), std::get<2>(*p));
+#endif			
+		printf("\nTforms vector.\n");
+		for(auto p = tforms.begin(); p != tforms.end(); ++p){
+			a = std::get<0>(*p);
+			b = std::get<1>(*p);
+			c = std::get<2>(*p);
+			if(((a%4 == 0)and(is_square(b)))or((b%4 == 0)and(is_square(a))))
+				printf("{%ld,%ld,%ld}\n", std::get<0>(*p), std::get<1>(*p), std::get<2>(*p));
+		}
 		printf("\n");
 			
 		current = tforms;

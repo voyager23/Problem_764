@@ -21,12 +21,15 @@
  * 
  */
 
-
+#ifndef __BERGGRENS_HXX__
+#define __BERGGRENS_HXX__
 #include <iostream>
 #include <vector>
 #include <tuple>
 #include <cstdint>
+#include "library.hxx"
 
 typedef uint64_t UL;
 typedef std::tuple<UL,UL,UL> PyTpl;
 typedef std::vector<PyTpl> Tform;
+#endif
